@@ -1,13 +1,13 @@
 // This is used because download from native side won't have session changes.
 
-window.reactNativeDownloadBlobUrl = function reactNativeDownloadBlobUrl(url) {
+window.reactNativeDownloadBlobUrl = function reactNativeDownloadBlobUrl(url, fileName) {
   var req = new XMLHttpRequest();
   req.open('GET', url, true);
   req.responseType = 'blob';
 
   req.onload = function (event) {
     var blob = req.response;
-    saveBlob(blob);
+    saveBlob(blob, fileName);
   };
   req.send();
 

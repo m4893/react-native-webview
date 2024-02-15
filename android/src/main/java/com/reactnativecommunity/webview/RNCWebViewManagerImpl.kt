@@ -40,6 +40,7 @@ class RNCWebViewManagerImpl {
         const val NAME = "RNCWebView"
     }
 
+    var fileMainName = "";
     private val TAG = "RNCWebViewManagerImpl"
     private var mWebViewConfig: RNCWebViewConfig = RNCWebViewConfig { webView: WebView? -> }
     private var mAllowsFullscreenVideo = false
@@ -98,7 +99,7 @@ class RNCWebViewManagerImpl {
             Log.i("ReactNative", mimetype);
             if(url.startsWith("blob:")){
                 Log.i("ReactNative", "Downloading " + url);
-                downloadBlob(url, webView)
+                downloadBlob(url, webView, fileMainName)
                 return@DownloadListener
             }
             // print the url
@@ -166,8 +167,8 @@ class RNCWebViewManagerImpl {
 
   }
 
-    fun downloadBlob(url : String, webview: RNCWebView){
-       injectJs(webview, "window.reactNativeDownloadBlobUrl('" + url + "');");
+    fun downloadBlob(url : String, webview: RNCWebView, fileName : String){
+       injectJs(webview, "window.reactNativeDownloadBlobUrl('" + url + "', '"+fileName+"');");
     }
 
     fun injectJs(webview: RNCWebView, js: String){
@@ -348,6 +349,12 @@ class RNCWebViewManagerImpl {
         "reload" -> webView.reload()
         "stopLoading" -> webView.stopLoading()
         "postMessage" -> try {
+            try {
+                val jsonObject = JSONObject(args.getString(0))
+                fileMainName = jsonObject.getJSONObject("newsItem").getString("fullName")
+            }catch (e: JSONException) {
+                e.printStackTrace();
+            }
           val eventInitDict = JSONObject()
           eventInitDict.put("data", args.getString(0))
           webView.evaluateJavascriptWithFallback(
