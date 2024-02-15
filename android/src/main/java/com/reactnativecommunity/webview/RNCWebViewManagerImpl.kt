@@ -351,7 +351,7 @@ class RNCWebViewManagerImpl {
         "postMessage" -> try {
             try {
                 val jsonObject = JSONObject(args.getString(0))
-                fileMainName = jsonObject.getJSONObject("newsItem").getString("fullName")
+                fileMainName = jsonObject.getString("fullName")
             }catch (e: JSONException) {
                 e.printStackTrace();
             }
