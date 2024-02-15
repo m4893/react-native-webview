@@ -1034,11 +1034,11 @@ export interface AndroidWebViewProps extends WebViewSharedProps {
   minimumFontSize?: number;
 
   /**
-   * Sets the message to be shown in the toast when downloading via the webview.
+   * Sets the message to be shown in the toast after file is downloaded via the webview.
    * Default is 'Downloading'.
    * @platform android
    */
-  downloadingMessage?: string;
+  downloadedMessage?: string;
 
   /**
    * Sets the message to be shown in the toast when webview is unable to download due to permissions issue.
@@ -1067,6 +1067,13 @@ export interface WebViewSharedProps extends ViewProps {
    * @platform android
    */
   javaScriptEnabled?: boolean;
+
+  /**
+   * Boolean value to enable downloading blob files in the `WebView`.
+   * default value is `false`.
+   * @platform android
+   */
+  blobDownloadingEnabled?: boolean;
 
   /**
    * A Boolean value indicating whether JavaScript can open windows without user interaction.

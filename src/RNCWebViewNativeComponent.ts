@@ -142,7 +142,7 @@ export interface NativeProps extends ViewProps {
   androidLayerType?: WithDefault<'none' | 'software' | 'hardware', 'none'>;
   cacheMode?: WithDefault<'LOAD_DEFAULT' | 'LOAD_CACHE_ELSE_NETWORK' | 'LOAD_NO_CACHE' | 'LOAD_CACHE_ONLY', 'LOAD_DEFAULT'>;
   domStorageEnabled?: boolean;
-  downloadingMessage?: string;
+  downloadedMessage?: string;
   forceDarkOn?: boolean;
   geolocationEnabled?: boolean;
   lackPermissionToDownloadMessage?: string;
@@ -227,6 +227,7 @@ export interface NativeProps extends ViewProps {
   webviewDebuggingEnabled?: boolean;
   mediaPlaybackRequiresUserAction?: boolean;
   messagingEnabled: boolean;
+  blobDownloadingEnabled: boolean;
   onLoadingError: DirectEventHandler<WebViewErrorEvent>;
   onLoadingFinish: DirectEventHandler<WebViewNavigationEvent>;
   onLoadingProgress: DirectEventHandler<WebViewNativeProgressEvent>;
